@@ -1,0 +1,23 @@
+package TestEntity;
+
+import DAOImplement.DAOCliente;
+import model.TblCliente;
+
+public class TESTCliente {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		TblCliente cli=new TblCliente();
+		DAOCliente implc=new DAOCliente();
+		
+		cli.setNomCliet("MANCO");
+		cli.setApeCliet("EFRAIN");
+		cli.setDniCliet("78965412");
+		cli.setEmaiClie("EFRAIN@GMAIL.COM");;
+		cli.setSexoClie("MACHAZO");
+		cli.setTelCliet("987456321");
+		implc.RegistrarCliente(cli);
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+INDEX VERSION 1.134
+C:\Users\yoyme\Videos\Proyecto_MAVEN\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2212496440.index
+\ProyectoJPAVeterinaria\src\main\resources
+C:\Users\yoyme\Videos\Proyecto_MAVEN\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1649181878.index
+\ProyectoJPAVeterinaria\src\main\java

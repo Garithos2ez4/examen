@@ -1,0 +1,95 @@
+package model;
+
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.Date;
+
+
+/**
+ * The persistent class for the tbl_producto database table.
+ * 
+ */
+@Entity
+@Table(name="tbl_producto")
+@NamedQuery(name="TblProducto.findAll", query="SELECT t FROM TblProducto t")
+public class TblProducto implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idProducto;
+
+	private String descripcionT1;
+
+	private String estadoT1;
+
+	@Temporal(TemporalType.DATE)
+	private Date fechafabriT1;
+
+	@Temporal(TemporalType.DATE)
+	private Date fechavencimT1;
+
+	private String nombreT1;
+
+	private double precioT1;
+
+	public TblProducto() {
+	}
+
+	public int getIdProducto() {
+		return this.idProducto;
+	}
+
+	public void setIdProducto(int idProducto) {
+		this.idProducto = idProducto;
+	}
+
+	public String getDescripcionT1() {
+		return this.descripcionT1;
+	}
+
+	public void setDescripcionT1(String descripcionT1) {
+		this.descripcionT1 = descripcionT1;
+	}
+
+	public String getEstadoT1() {
+		return this.estadoT1;
+	}
+
+	public void setEstadoT1(String estadoT1) {
+		this.estadoT1 = estadoT1;
+	}
+
+	public Date getFechafabriT1() {
+		return this.fechafabriT1;
+	}
+
+	public void setFechafabriT1(Date fechafabriT1) {
+		this.fechafabriT1 = fechafabriT1;
+	}
+
+	public Date getFechavencimT1() {
+		return this.fechavencimT1;
+	}
+
+	public void setFechavencimT1(Date fechavencimT1) {
+		this.fechavencimT1 = fechavencimT1;
+	}
+
+	public String getNombreT1() {
+		return this.nombreT1;
+	}
+
+	public void setNombreT1(String nombreT1) {
+		this.nombreT1 = nombreT1;
+	}
+
+	public double getPrecioT1() {
+		return this.precioT1;
+	}
+
+	public void setPrecioT1(double precioT1) {
+		this.precioT1 = precioT1;
+	}
+
+}

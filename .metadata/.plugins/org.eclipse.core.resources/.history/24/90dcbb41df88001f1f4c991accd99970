@@ -1,0 +1,54 @@
+package DAOImplement;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import Interfaces.ICliente;
+import model.TblCliente;
+
+public class DAOCliente implements ICliente {
+
+	@Override
+	public void RegistrarCliente(TblCliente cli) {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProyectoJPAVeterinaria");
+		EntityManager em=emf.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(cli);
+			em.getTransaction().commit();
+		} catch (RuntimeException e) {
+			e.getMessage();
+			System.out.println("NO SE PUEDE REGISTRAR EN LA TABLA");
+			// TODO: handle exception
+		}
+		
+	}
+
+	@Override
+	public void ActualizarCliente(TblCliente cli) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void EliminarCliente(TblCliente cli) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<TblCliente> ListarCLiente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public TblCliente BuscarCliente(TblCliente cli) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,11 @@
+package model;
+
+public class DTO {
+	 private Long idClient;
+	    private String nomCliet;
+	    private String apeCliet;
+	    private String dniCliet;
+	    private String emaiClie;
+	    private String sexoClie;
+	    private String telCliet;
+}

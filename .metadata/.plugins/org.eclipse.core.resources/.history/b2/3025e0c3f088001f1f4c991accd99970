@@ -1,0 +1,134 @@
+package DAOImplement;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import Interfaces.ICliente;
+import model.TblCliente;
+
+public class DAOCliente implements ICliente {
+
+	@Override
+	public void RegistrarCliente(TblCliente cli) {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProyectoJPAVeterinaria");
+		EntityManager em=emf.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(cli);
+			System.out.println("REGISTRADO CORRECTAMENTE");
+			em.getTransaction().commit();
+		} catch (RuntimeException e) {
+			e.getMessage();
+			System.out.println("NO SE PUEDE REGISTRAR EN LA TABLA");
+			// TODO: handle exception
+		}finally {
+			em.close();
+			emf.close();
+		}
+		
+	}
+
+	@Override
+	public void ActualizarCliente(TblCliente cli) {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProyectoJPAVeterinaria");
+		EntityManager em=emf.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			//buscar la entidad en la base de datos
+			TblCliente bsc=em.find(TblCliente.class, cli.getIdClient());
+			
+			if(bsc!=null) {
+				//Actualizar solo los campos que se desea
+				bsc.setNomCliet(cli.getNomCliet());
+				bsc.setApeCliet(cli.getNomCliet());
+				bsc.setDniCliet(cli.getDniCliet());
+				bsc.setEmaiClie(cli.getEmaiClie());;
+				bsc.setSexoClie(cli.getSexoClie());
+				bsc.setTelCliet(cli.getTelCliet());
+				em.merge(bsc);
+				System.out.println("ACTUALIZADO CORRECTAMENTE");
+				em.getTransaction().commit();
+			}else {
+				System.out.println("Cliente no encontrado en la base datos");
+			}
+		} catch (RuntimeException e) {
+			e.getMessage();
+			System.out.println("NO SE PUEDE ACTUALIZAR EN LA TABLA");
+			// TODO: handle exception
+		}finally {
+			em.close();
+			emf.close();
+		}
+		
+	}
+
+	@Override
+	public void EliminarCliente(TblCliente cli) {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProyectoJPAVeterinaria");
+		EntityManager em=emf.createEntityManager();
+		try {
+			em.getTransaction().begin();
+			TblCliente elimcli=em.find(TblCliente.class, cli.getIdClient());
+			
+			if(elimcli!=null) {
+				em.remove(elimcli);
+				System.out.println("ELIMINADO CORRECTAMENTE");
+				em.getTransaction().commit();
+			}else {
+				System.out.println("Cliente no encontrado en la base de datos");
+			}
+		} catch (RuntimeException e) {
+			e.getMessage();
+			System.out.println("NO SE PUEDE ACTUALIZAR EN LA TABLA");
+			// TODO: handle exception
+		}finally {
+			em.close();
+			emf.close();
+		}
+		
+	}
+
+	@Override
+	public List<TblCliente> ListarCLiente() {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProyectoJPAVeterinaria");
+		EntityManager em=emf.createEntityManager();
+		List<TblCliente> listado=null;
+		try {
+			em.getTransaction().begin();
+			listado=em.createQuery("select c from TblCliente c",TblCliente.class).getResultList();
+			em.getTransaction().commit();
+		} catch (RuntimeException e) {
+			e.getMessage();
+			System.out.println("NO SE PUEDE LISTAR EN LA TABLA");
+			// TODO: handle exception
+		}finally {
+			em.close();
+			emf.close();
+		}
+		return listado;
+	}
+
+	@Override
+	public TblCliente BuscarCliente(TblCliente cli) {
+		EntityManagerFactory emf=Persistence.createEntityManagerFactory("ProyectoJPAVeterinaria");
+		EntityManager em=emf.createEntityManager();
+		TblCliente listado=null;
+		try {
+			em.getTransaction().begin();
+			listado=em.find(TblCliente.class, cli.getIdClient());
+			em.getTransaction().commit();
+		} catch (RuntimeException e) {
+			e.getMessage();
+			System.out.println("NO SE PUEDE BUSCAR EN LA TABLA");
+			// TODO: handle exception
+		}finally {
+			em.close();
+			emf.close();
+		}
+		return listado;
+	}
+
+}
